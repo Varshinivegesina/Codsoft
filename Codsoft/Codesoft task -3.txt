@@ -1,0 +1,106 @@
+import java.util.Scanner;
+class BankAccount
+{
+private double bal;
+public BankAccount(double initialbal)
+{
+this.bal=initialbal;
+}
+public double getbal()
+{
+return bal;
+}
+public void withdraw(double amt)
+{
+if(amt>0 && amt<=bal)
+{
+bal-=amt;
+System.out.println("WITHDRAW SUCCESSFUL\nNew Balance:"+bal);
+}
+else
+{
+System.out.println("***Insufficient Balance***");
+}
+}
+public void deposit(double amt)
+{
+if(amt>0)
+{
+bal+=amt;
+System.out.println("DEPOSIT SUCCESSFUL\nNew Balance:"+bal);
+}
+else
+{
+System.out.println("Enter some valid amount to deposit");
+}
+}
+}
+class ATM
+{
+private BankAccount account;
+Scanner sc=new Scanner(System.in);
+public ATM(BankAccount account)
+{
+this.account=account;
+}
+public void Menu()
+{
+System.out.println("1.Check Balance\n2.Deposit\n3.WithDraw\n4.Exit");
+}
+public void checkBal()
+{
+System.out.println("BALANCE:"+account.getbal());
+}
+public void deposit()
+{
+System.out.println("Enter the amount");
+double amt=sc.nextDouble();
+account.deposit(amt);
+}
+public void withdraw()
+{
+System.out.println("Enter the amount");
+double amt=sc.nextDouble();
+account.withdraw(amt);
+}
+public void run()
+{
+int ch;
+do
+{
+Menu();
+System.out.println("Please Enter your choice");
+ch=sc.nextInt();
+switch(ch)
+{
+case 1:
+checkBal();
+  break;
+case 2:
+deposit();
+break;
+case 3:
+withdraw();
+    break;
+case 4:
+System.out.println("***Thank You***\nVisit Again");
+break;
+default:
+System.out.println("Enter a valid option");
+}
+}while(ch!=4);
+}
+}
+public class Task3
+{
+public static void main(String[] args)
+{
+System.out.println("*** WELCOME ****");
+Scanner s=new Scanner(System.in);
+System.out.println("Enter the PIN:");
+int pin=s.nextInt();
+BankAccount act=new BankAccount(1000.0);
+ATM atm=new ATM(act);
+atm.run();
+}
+}

@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Task2
+{
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter number of Subjects:");
+int n=sc.nextInt();
+int sum=0;
+for(int i=0;i<n;i++)
+{
+System.out.println("Enter marks of Sub"+(i+1)+"(for 100):");
+int m=sc.nextInt();
+sum+=m;
+}
+int avg=sum/n;
+char g=(avg>90)?'A':(avg>80)?'B':(avg>60)?'C':(avg>40)?'D':'F';
+System.out.println("TOTAL MARKS="+sum+"/"+(n*100)+"\nAVG PERCENTAGE="+avg+"%"+"\nGRADE:"+g);
+}
+}

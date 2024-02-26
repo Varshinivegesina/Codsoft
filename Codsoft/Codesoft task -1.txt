@@ -1,0 +1,89 @@
+import java.util.Random;
+import java.util.Scanner;
+public class Task1
+{
+private static int count;
+public static void main(String[] args)
+{
+System.out.println("Let's start the NUMBER GAME...");
+Scanner sc=new Scanner(System.in);
+int a;
+count=0;
+boolean b=true;
+do
+{
+System.out.println("1.START\n2.Go to Home");
+a=sc.nextInt();
+switch(a)
+{
+case 1:
+game(sc,b);
+System.out.println("1.Play Again\n2.Go to Home");
+int c=sc.nextInt();
+while(c==1)
+{
+game(sc,b);
+System.out.println("1.Play Again\n2.Go to Home");
+c=sc.nextInt();
+}
+System.out.println("Well done! "+count+" Right guesses");
+b=false;
+break;
+case 2:
+System.out.println("Navigating to Home Page");
+b=false;
+break;
+default:
+System.out.println("WOOPS!\nEnter from the given options");
+break;
+}
+}
+while(b);
+}
+public static void game(Scanner sc,boolean b)
+{
+Random rnd=new Random();
+int d=rnd.nextInt(101);
+System.out.println("Guess the number...");
+int guess;
+int tries=3;
+while(tries>0)
+{
+System.out.println("Enter your guess:");
+guess=sc.nextInt();
+if((guess>d)&&((guess-d)<=10))
+{
+System.out.println("Your guess is HIGH");
+System.out.println((tries-1)+" chances left");
+}
+else if((guess<d)&&((d-guess)<=10))
+{
+System.out.println("Your guess is LOW");
+System.out.println((tries-1)+" chances left");
+}
+else if((guess>d)&&((guess-d)>10))
+{
+System.out.println("Your guess is VERY HIGH");
+System.out.println((tries-1)+" chances left");
+}
+else if((guess<d)&&((d-guess)>10))
+{
+System.out.println("Your guess is VERY LOW");
+System.out.println((tries-1)+" chances left");
+}
+else
+{
+System.out.println("HURRAY!\nYou have made the right guess");
+count++;
+b=false;
+break;
+}
+tries-=1;
+}
+if(b)
+{
+System.out.println("Sorry!You couldn't guess it");
+System.out.println("The number is "+d);
+}
+}
+}
